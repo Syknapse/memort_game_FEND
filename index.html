@@ -16,70 +16,29 @@
         </header>
 
         <section class="score-panel">
-        	<ul class="stars">
-        		<li><i class="fa fa-star"></i></li>
-        		<li><i class="fa fa-star"></i></li>
-        		<li><i class="fa fa-star"></i></li>
-        	</ul>
+        	<div data-select="rating"><i class="fa fa-star"></i> Your Rating <i class="fa fa-star"></i></div>
 
-        	<span class="moves">3</span> Moves
+        	<div>MOVES: <span data-select="moves">0</span></div>
+        	<div>MATCHED: <span data-select="matched">0</span></div>
 
-            <div class="restart">
+            <div><span id="minutes">00</span>:<span id="seconds">00</span></div>
+
+            <button class="restart" data-select="reset">
         		<i class="fa fa-repeat"></i>
-        	</div>
+        	</button>
         </section>
 
-        <ul class="deck">
-            <li class="card">
-                <i class="fa fa-diamond"></i>
-            </li>
-            <li class="card">
-                <i class="fa fa-paper-plane-o"></i>
-            </li>
-            <li class="card match">
-                <i class="fa fa-anchor"></i>
-            </li>
-            <li class="card">
-                <i class="fa fa-bolt"></i>
-            </li>
-            <li class="card">
-                <i class="fa fa-cube"></i>
-            </li>
-            <li class="card match">
-                <i class="fa fa-anchor"></i>
-            </li>
-            <li class="card">
-                <i class="fa fa-leaf"></i>
-            </li>
-            <li class="card">
-                <i class="fa fa-bicycle"></i>
-            </li>
-            <li class="card">
-                <i class="fa fa-diamond"></i>
-            </li>
-            <li class="card">
-                <i class="fa fa-bomb"></i>
-            </li>
-            <li class="card">
-                <i class="fa fa-leaf"></i>
-            </li>
-            <li class="card">
-                <i class="fa fa-bomb"></i>
-            </li>
-            <li class="card open show">
-                <i class="fa fa-bolt"></i>
-            </li>
-            <li class="card">
-                <i class="fa fa-bicycle"></i>
-            </li>
-            <li class="card">
-                <i class="fa fa-paper-plane-o"></i>
-            </li>
-            <li class="card">
-                <i class="fa fa-cube"></i>
-            </li>
-        </ul>
+        <section class="deck" data-select="deck"></section>
     </div>
+
+    <section class="hide" data-select="end-game-container">
+        <div class="backdrop" data-select="backdrop"></div>
+        <div class="modal">
+            <p>GAME COMPLETED</p>
+            <div class="end-game-message" data-select="message"></div>
+            <button class="play-again" data-select="play-again">Play again</button>
+        </div>
+    </section>
 
     <script src="js/app.js"></script>
 </body>
