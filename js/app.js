@@ -7,15 +7,17 @@ const resetButton = document.querySelector('[data-select=reset]')
 let isStart = true
 let selectedCards = []
 let matchedCards = []
-const star = `<i class="fa fa-star">`
+const star = `<i class="fa fa-star"></i>`
 
 // Reset
 function resetGame() {
      deck.innerHTML = ''
      selectedCards = []
      matchedCards = []
-     moves = 0;
+     moves = 0
+     matched = 0
      movesNumber.innerHTML = '0'
+     matchedNumber.innerHTML = '0'
      ratingDisplay.innerHTML = `${star} Your Rating ${star}`
      resetTimer()
      isStart = true
@@ -55,8 +57,8 @@ function addClick(card) {
         if (selectedCards.length === 1) {
             card.classList.add('open', 'show', 'disabled')
             selectedCards.push(currentCard)
-            compareCards(currentCard, previousCard)
             addMove()
+            compareCards(currentCard, previousCard)
         } else {
             card.classList.add('open', 'show', 'disabled')
             selectedCards.push(currentCard)
@@ -72,13 +74,12 @@ function compareCards(currentCard, previousCard) {
         addMatched()
         rating()
         selectedCards = []
-        console.log(movesNumber.innerText)
         gameOver()
     } else {
-        setTimeout(function () {
+        setTimeout( () => {
             currentCard.classList.remove('open', 'show', 'disabled')
             previousCard.classList.remove('open', 'show', 'disabled')
-        }, 500)
+        }, 600)
         selectedCards = []
     }
 }
@@ -138,34 +139,35 @@ function startTimer() {
 }
 
 function stopTimer() {
-    clearInterval(timer);
+    clearInterval(timer)
 }
 
 function resetTimer() {
     secondsDisplay.innerHTML = '00'
     minutesDisplay.innerHTML = '00'
+    sec = 0
 }
 
 
  // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    let currentIndex = array.length, temporaryValue, randomIndex;
+    let currentIndex = array.length, temporaryValue, randomIndex
 
     while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
+        randomIndex = Math.floor(Math.random() * currentIndex)
+        currentIndex -= 1
+        temporaryValue = array[currentIndex]
+        array[currentIndex] = array[randomIndex]
+        array[randomIndex] = temporaryValue
     }
 
-    return array;
+    return array
 }
 
 function gameOver() {
     if (matchedCards.length === symbols.length) {
-        stopTimer();
-        endGame();
+        stopTimer()
+        endGame()
     }
 }
 
@@ -179,12 +181,11 @@ function endGame() {
     let finalRating = ratingDisplay.innerText
     let minutes = minutesDisplay.innerText
     let seconds = secondsDisplay.innerText
-    let moves = movesNumber.innerText
     endGameContainer.classList.remove('hide')
     message.innerHTML = `
-    <p>Round complete after ${moves} moves</p>
-    <p>You did it in ${minutes}:${seconds}</p>
-    <p>Your rating was ${finalRating}</p>
+    <p>Round complete after <strong>${moves}</strong> moves</p>
+    <p>You did it in <strong>${minutes}:${seconds}</strong></p>
+    <p>Your rating was <strong>${finalRating}</strong></p>
     `
 }
 
@@ -198,18 +199,7 @@ backdrop.addEventListener('click', () => {
 })
 
 function hideModal(){
-    endGameContainer.classList.add("hide");
+    endGameContainer.classList.add('hide')
 }
 
 initialize()
-
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
