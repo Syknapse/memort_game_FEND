@@ -1,4 +1,5 @@
-const symbols = ['diamond', 'diamond', 'paper-plane-o', 'paper-plane-o', 'anchor', 'anchor', 'bolt', 'bolt', 'cube', 'cube', 'leaf', 'leaf', 'bicycle', 'bicycle', 'bomb', 'bomb']
+const array = ['diamond', 'paper-plane-o', 'anchor', 'bolt', 'cube', 'leaf', 'bicycle', 'bomb']
+const symbols = array.concat(array)
 const deck = document.querySelector('[data-select=deck]')
 const movesNumber = document.querySelector('[data-select=moves]')
 const matchedNumber = document.querySelector('[data-select=matched]')
@@ -32,7 +33,7 @@ resetButton.addEventListener('click', () => {
 
 // Start game
 function initialize() {
-    // shuffle(symbols)
+    shuffle(symbols)
 
     symbols.forEach( symbol => {
         const card = document.createElement('div')
@@ -115,7 +116,7 @@ function rating() {
         ratingDisplay.innerHTML = `Not bad ${star}`
 
     } else if (moves > 40) {
-        ratingDisplay.innerHTML = `Well ...`
+        ratingDisplay.innerHTML = `Well ... <i class="fa fa-star-o"></i>`
 
     }
 }
@@ -178,7 +179,7 @@ const backdrop = document.querySelector('[data-select=backdrop]')
 const playAgainButton = document.querySelector('[data-select=play-again]')
 
 function endGame() {
-    let finalRating = ratingDisplay.innerText
+    let finalRating = ratingDisplay.innerHTML
     let minutes = minutesDisplay.innerText
     let seconds = secondsDisplay.innerText
     endGameContainer.classList.remove('hide')
