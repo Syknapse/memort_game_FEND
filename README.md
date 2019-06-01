@@ -1,6 +1,6 @@
 # Memory Game Project
 
-[Try the game here](https://syknapse.github.io/memort_game_FEND/)
+[Try the game here](https://syknapse.github.io/memory_game_FEND/)
 
 A classig memory matching game.
 
